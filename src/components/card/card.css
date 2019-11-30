@@ -1,0 +1,141 @@
+.Card {
+  --white: #fff;
+  --black: #000;
+  --mine: #484848;
+  --mine-l: #999;
+  --highlight: #712F80;
+
+  --aria: 30px;
+  --aria-s: 20px;
+  --aria-xs: 10px;
+  --aria-xxs: 8px;
+
+  --aria-icons: 40px;
+  --aria-between-items: 16px;
+  --skew-h: 45px;
+  --skew-angle: 6deg;
+  --zoom-button-size: 30px;
+
+  width: 400px;
+  height: 500px;
+  background: var(--white);
+  color: var(--mine);
+  border-radius: 4px;
+  box-shadow: 0 1px var(--white) inset, 0 1px 3px rgba(34, 25, 25, 0.4);
+  overflow: hidden;
+  z-index: 1;
+}
+
+.Card-picture {
+  height: 50%;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  z-index: -1;
+  transition: height .26s ease;
+}
+
+.Card-picture:after {
+  background-color: var(--white);
+  content: "";
+  position: absolute;
+  bottom: calc(var(--skew-h) * -1);
+  right: 0;
+  height: var(--skew-h);
+  width: 120%;
+  transform-origin: right bottom;
+  transform: rotate(var(--skew-angle));
+  transition: transform .3s ease-out;
+}
+
+.Card-edit,
+.Card-zoom {
+  background-color: var(--white);
+  cursor: pointer;
+  width: var(--zoom-button-size);
+  height: var(--zoom-button-size);
+  padding: 0;
+  line-height: var(--zoom-button-size);
+  border: 0;
+  border-radius: var(--zoom-button-size);
+  font-size: 1.2rem;
+  color: var(--highlight);
+  position: absolute;
+  top: var(--aria-xxs);
+  right: var(--aria-xxs);
+  text-align: center;
+}
+
+.Card-edit {
+  left: var(--aria-xxs);
+  right: auto;
+}
+
+.Card-header {
+  padding: var(--aria-xs) var(--aria);
+}
+
+.Card-title {
+  display: flex;
+  align-items: baseline;
+}
+
+.Card-salutation {
+  font-size: 1.2rem;
+}
+
+.Card-name {
+  color: var(--highlight);
+  font-weight: bold;
+  font-size: 1.6rem;
+}
+
+.Card-name.is-editable {
+  width: 86%;
+}
+
+.Card-salutation,
+.CardContent-icon {
+  flex: 0 0 var(--aria-icons);
+}
+
+.CardContent {
+  padding: var(--aria-s) var(--aria);
+}
+
+.CardContent-item {
+  display: flex;
+}
+
+.CardContent-item,
+.CardContent-icon {
+  transition: color .2s linear;
+}
+
+.CardContent-item:hover,
+.CardContent-item:hover .CardContent-icon {
+  color: var(--black);
+}
+
+.CardContent-item + .CardContent-item {
+  margin-top: var(--aria-between-items);
+}
+
+.CardContent-icon {
+  color: var(--mine-l);
+  display: inline-block;
+}
+
+.CardContent-text > * + * {
+  display: block;
+  margin-top: var(--aria-xxs);
+}
+
+.Card.is-zoomed .Card-picture {
+  height: 100%;
+}
+
+.Card.is-zoomed .Card-picture:after {
+  transform: rotate(0deg);
+}
